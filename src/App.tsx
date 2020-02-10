@@ -1,8 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import { getPostById} from './actions/PageActions'
+import {componentDidMount} from './actions/PageActions'
 import {ComponentPostList} from "./components/ComponentPostList";
-import {ComponentArticle} from "./components/ComponentArticle";
 
 
 type respX = {
@@ -13,7 +12,7 @@ type respX = {
 }
 
 interface IProps {
-    getPostById: any,
+    componentDidMount: any,
     page: any,
 }
 
@@ -23,21 +22,16 @@ interface StateI {
 
 
 class App extends React.Component<IProps, StateI> {
-
-    state: StateI = {data: []}
-
-    async componentDidMount() {
-        const response = await fetch(`https://jsonplaceholder.typicode.com/posts/`);
-        const json = await response.json();
-        this.setState({data: json});
+    constructor(data: any) {
+        super(data);
+        this.props.componentDidMount(data);
     }
 
     render() {
-        const {page, getPostById} = this.props
+        const {page, componentDidMount} = this.props
         return (
             <div className="container">
-                <ComponentArticle post={page.post}/>
-                <ComponentPostList getPostById={getPostById} data={this.state.data}/>
+                <ComponentPostList data={page.data} componentDidMount={componentDidMount}/>
             </div>
         )
     }
@@ -51,7 +45,7 @@ const mapStateToProps = (state: any) => {
 
 const mapDispatchToProps = (dispatch: any) => {
     return {
-        getPostById: (post: any) => dispatch(getPostById(post))
+        componentDidMount: () => dispatch(componentDidMount())
     }
 };
 

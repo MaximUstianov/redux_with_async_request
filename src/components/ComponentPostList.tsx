@@ -8,20 +8,18 @@ type respX = {
 }
 
 interface IPost {
-    data: respX[],
-    getPostById: (post: any) => void;
+    data: any,
+    componentDidMount: (data: respX[]) => void;
 }
 
 export class ComponentPostList extends React.Component<IPost> {
-    onHandleClick = (postId: any) => {
-        this.props.getPostById(postId)
-    }
+
 
     render() {
         return (
             <div className="About">
-                {this.props.data.map(el => (
-                    <li onClick={e => this.onHandleClick(el.id)} key={el.id}>
+                {this.props.data.map((el: any) => (
+                    <li key={el.id}>
                         {el.title}
                     </li>
                 ))}

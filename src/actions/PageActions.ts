@@ -1,17 +1,14 @@
-export const GET_ID = 'GET_ID'
-export const CHANGE_POST = 'CHANGE_POST'
+export const LOAD_POST = 'LOAD_POST'
 
-// export const proofDocument = (document: UEditDocument, sessionId: string) => async (dispatch: any) => {
-export const getPostById = (id: any) => async (dispatch: any) => {
-    const myResponse = await fetch(`https://jsonplaceholder.typicode.com/posts/${id}`);
-    const myJson = await myResponse.json();
-    const post = myJson.body;
-    dispatch(ChangePost(post));
+export const componentDidMount = () => async (dispatch: any) => {
+    const response = await fetch(`https://jsonplaceholder.typicode.com/posts/`);
+    const data = await response.json();
+    dispatch(LoadPost(data));
 }
 
-export const ChangePost = (postData: any) => {
+export const LoadPost = (mainData: any) => {
     return {
-        type: CHANGE_POST,
-        payload: postData
+        type: LOAD_POST,
+        payload: mainData
     };
 }
