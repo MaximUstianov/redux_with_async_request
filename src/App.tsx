@@ -4,29 +4,17 @@ import {componentDidMount} from './actions/PageActions'
 import {ComponentPostList} from "./components/ComponentPostList";
 
 
-type respX = {
-    "id": any,
-    "userId": any,
-    "title": any,
-    "body": any,
-}
-
 interface IProps {
     componentDidMount: any,
     page: any,
 }
 
-interface StateI {
-    data: respX[];
-}
 
-
-class App extends React.Component<IProps, StateI> {
+class App extends React.Component<IProps> {
     constructor(data: any) {
         super(data);
         this.props.componentDidMount(data);
     }
-
 
 
     render() {
