@@ -27,6 +27,8 @@ class App extends React.Component<IProps, StateI> {
         this.props.componentDidMount(data);
     }
 
+
+
     render() {
         const {page, componentDidMount} = this.props
         return (
