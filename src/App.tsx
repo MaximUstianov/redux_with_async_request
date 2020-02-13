@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import {componentDidMount} from './actions/PageActions'
 import {ComponentPostList} from "./components/ComponentPostList";
 
+/*HELLO HELLO*/
 
 interface IProps {
     componentDidMount: any,
@@ -26,6 +27,10 @@ class App extends React.Component<IProps> {
         )
     }
 }
+
+
+
+
 
 const mapStateToProps = (state: any) => {
     return {
